@@ -1,0 +1,27 @@
+.nav-item a:hover {
+    background-color: rgb(107, 168, 67);
+    color: white;
+}
+
+#map {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+ 
+footer {
+    padding: 0px;
+}
+ 
+footer a {
+    text-decoration: none;
+    color: rgb(94, 94, 94);
+    padding: 5px 20px;
+}
+ 
+footer a:hover {
+    background-color: rgb(107, 168, 67);
+    color: white;
+}
