@@ -25,6 +25,7 @@
  
     <body onload="init()">
         
+        <!-- NAVIGATION BAR -->
         <nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html"><strong>Burundi</strong> | Market Analytics</a>
@@ -56,10 +57,41 @@
             </div>
         </nav>
 
+        <!-- BASE MAP OPTIONS -->
+        <div id="pnl-basemap" class="card panel panel-tool">
+            <div class="card-header">
+              Base layer
+              <span class="pull-right clickable close-icon" data-effect="fadeOut"><i class="fa fa-times"></i></span>
+            </div>
+            <div class="card-body">
+                <form>          
+                    <div class="form-group">            
+                        <div class="form-check">
+                            <input id="base-osm" type="radio" name="basemap" class="form-check-input" value="osm" checked/><label for="base-osm">OpenStreetMap</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="base-otm" type="radio" name="basemap" class="form-check-input" value="otm"/><label for="base-otm">OpenTopoMap</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="base-esri-wtm" type="radio" name="basemap" class="form-check-input" value="esri_wtm"/><label for="base-esri-wtm">ESRI World Topo Map</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="base-esri-natgeo" type="radio" name="basemap" class="form-check-input" value="esri_natgeo"/><label for="base-esri-natgeo">ESRI NatGeo World Map</label>
+                        </div>
+                        <div class="form-check">  
+                            <input id="base-own" type="radio" name="basemap" class="form-check-input" value="own"/><label for="base-own">Own tile service</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- BASE MAP DISPLAY -->
         <div id="map">
  
         </div>
 
+        <!-- FOOTER -->
         <footer class="fixed-bottom bg-light">
             <div class="container-fluid d-flex justify-content-center">
                 <a href="#">About</a>
