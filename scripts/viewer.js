@@ -66,6 +66,7 @@ function getBaseMap(name){
 // hide element with the .panel class selector
 function hidePanels(){
     $(".panel").hide();
+    $(".alert").hide();
 }
  
 
