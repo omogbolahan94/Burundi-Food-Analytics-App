@@ -46,7 +46,7 @@ footer a {
     padding: 5px 20px;
 }
  
-footer a:hover {
+footer a:hover, .card-header {
     background-color: rgb(107, 168, 67);
     color: white;
 }
