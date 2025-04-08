@@ -1,4 +1,11 @@
 let mainMap = null;
+
+// keep the id of an activated textbox that is detected 
+let currentElement = "";
+ 
+$("input[type=textbox]").focus(function() {
+    currentElement = $(this).attr("id");
+});
  
 function init(){
     // Define the map view
@@ -22,6 +29,15 @@ function init(){
     let baseLayer = getBaseMap("osm");
     
     mainMap.addLayer(baseLayer);
+
+    // event listener that detects click on the map
+    // extract the coordinates from the event listener if there is a clicekd point on map
+    mainMap.on('click', function(evt) {
+        let val = evt.coordinate[0].toString() + "," + evt.coordinate[1].toString();
+        if (currentElement != ""){
+            $("#" + currentElement).val(val); // If a textbox is selected, the coordinates are displayed on it.
+        }
+    })
  
 }
 
@@ -63,7 +79,7 @@ function getBaseMap(name){
 }
 
 
-// hide element with the .panel class selector
+// hide element with the .panel and .alert class selector
 function hidePanels(){
     $(".panel").hide();
     $(".alert").hide();
