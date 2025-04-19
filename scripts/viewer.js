@@ -36,6 +36,34 @@ function init(){
         let val = evt.coordinate[0].toString() + "," + evt.coordinate[1].toString();
         if (currentElement != ""){
             $("#" + currentElement).val(val); // If a textbox is selected, the coordinates are displayed on it.
+            
+            // represent selected location is represented with a red marker
+            const feature = new ol.Feature({
+                geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
+            });
+ 
+            // display pin icon on the selected coordinate
+            feature.setStyle(
+                new ol.style.Style({ 
+                    image: new ol.style.Icon({
+                        color: "#FF0000",
+                        src: './images/pin.svg',            
+                        width: 30,
+                    })
+                })
+            );
+ 
+            // Creates a Vector object which enables the rendering of vector objects on a map.
+            const layer = new ol.layer.Vector({
+                name: "location",
+                source: new ol.source.Vector({
+                    features: [feature],
+                  })
+            });
+            layer.setZIndex(100);
+ 
+            removeLayerByName(mainMap, "location");
+            mainMap.addLayer(layer);
         }
     })
  
