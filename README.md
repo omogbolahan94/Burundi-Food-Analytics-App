@@ -8,5 +8,10 @@ Address accessibility to food markets in Burundi by mapping catchment areas and 
 ### FEATURES
 * **Service Area**: visualize the area covered by a market based on an input location and the size of the market selected (radio button). 
     * Location Textbox: popuklated with the extracted coordinates of a clicekd point on the map and mark the point with an icon on the map for visuals.
-    * 
+
+* **Search Markets Tool:** Draw a circle to represent the searched markets that are located within the selected distance from a point in time.
+    * slicer control feature to input distance 
+    * visual representaion of the searching area
+
+
 

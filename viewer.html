@@ -38,7 +38,7 @@
                             <a class="nav-link" href="#" onclick="showPanel('pnl-basemap')">Base layer</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Search</a>
+                            <a class="nav-link" href="#" onclick="showPanel('pnl-search')">Search</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="showPanel('pnl-service')">Service area</a>
@@ -56,6 +56,31 @@
                 </div>
             </div>
         </nav>
+        <!-- SEARCH: Search Markey Tool -->
+        <div id="pnl-search" class="card panel panel-tool">
+            <div class="card-header">
+                Search markets
+                <span class="pull-right clickable close-icon" data-effect="fadeOut"><i class="fa fa-times"></i></span>
+            </div>
+            <div class="card-body">
+                <div id="pnl-search-alert" class="alert alert-danger">
+                    Error:
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="location-search" class="form-label">Location</label>
+                        <input id="location-search" type="textbox" class="form-control" placeholder="Click here and then on the map"/>
+                    </div>  
+                    <div class="form-group">
+                        <label for="distance-slider" class="form-label">Distance to search: <spam id="val">0</spam>km</label>
+                        <input id="distance-slider" type="range" class="form-range" min="0" max="50" step="0.1" value="0"/>
+                    </div>
+                    <div class="form-group">
+                        <input id="btnSearch" type="button" class="btn pull-right" value="Search">
+                    </div>
+                </form>
+            </div>
+        </div>
         <!-- SERVICES: Service Area Tool -->
         <div id="pnl-service" class="card panel panel-tool">
             <div class="card-header">
