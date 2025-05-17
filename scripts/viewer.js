@@ -37,6 +37,7 @@ function init(){
         if (currentElement != ""){
             $("#" + currentElement).val(val); // If a textbox is selected, the coordinates are displayed on it.
             
+            // MANIPULATING OPEN LAYER: feature, style, and vector
             // represent selected location is represented with a red marker
             const feature = new ol.Feature({
                 geometry: new ol.geom.Point([evt.coordinate[0], evt.coordinate[1]]),
@@ -144,3 +145,45 @@ $("input[name=basemap]").click(function(evt){
     let baseLayer = getBaseMap(evt.target.value);
     mainMap.addLayer(baseLayer);    
 })
+
+
+// Call the Python service and render the results.
+//  the Python service get the service area polygon from the database.
+$("#btnService").click(function(){
+    removeLayerByName(mainMap, "area");
+    $("#pnl-service-alert").hide();
+ 
+    $.ajax({
+        url: "./services/service_area.py?" +
+            "location=" + $("#location-service").val() +
+            "&size=" + $("input[name=size]:checked")[0].value +
+            "&srid=3857",
+        type: "GET",
+        success: function(data){
+            if (data.length != 0){
+                let vectorLayer = new ol.layer.Vector({
+                    name: "area",
+                    source: new ol.source.Vector({
+                        //  Creates a GeoJSON object that can be used as data source to create a vector layer.
+                        features: new ol.format.GeoJSON().readFeatures(data[0].geom),
+                    }),
+                    style: new ol.style.Style({
+                        stroke: new ol.style.Stroke({
+                            color: '#ff0000',
+                            width: 2,
+                        }),
+                        fill: new ol.style.Fill({
+                            color: 'rgba(255, 255, 255, 0.4)'
+                        })
+                    })
+                });
+ 
+                mainMap.addLayer(vectorLayer);
+            } 
+        },
+        error: function(data){
+            $("#pnl-service-alert").html("Error: An error occurred while executing the tool.");
+            $("#pnl-service-alert").show();
+        }
+    })
+});
