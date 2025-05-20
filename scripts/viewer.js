@@ -71,6 +71,14 @@ function init(){
         if (currentElement != ""){
             $("#" + currentElement).val(val); // If a textbox is selected, the coordinates are displayed on it.
             
+            // for the shortest route
+            let name = "location_1";
+            let color = "#FF0000";
+ 
+            if (currentElement == 'end'){
+                name = "location_2";
+                color = "#00FF00";
+            } 
             // MANIPULATING OPEN LAYER: feature, style, and vector
             // represent selected location is represented with a red marker
             const feature = new ol.Feature({
@@ -81,7 +89,7 @@ function init(){
             feature.setStyle(
                 new ol.style.Style({ 
                     image: new ol.style.Icon({
-                        color: "#FF0000",
+                        color: color,
                         src: './images/pin.svg',            
                         width: 30,
                     })
@@ -90,14 +98,14 @@ function init(){
  
             // Creates a Vector object which enables the rendering of vector objects on a map.
             const layer = new ol.layer.Vector({
-                name: "location",
+                name: name,
                 source: new ol.source.Vector({
                     features: [feature],
                   })
             });
             layer.setZIndex(100);
  
-            removeLayerByName(mainMap, "location");
+            removeLayerByName(mainMap, name);
             mainMap.addLayer(layer);
 
             //  draw a circle for a selected location
@@ -286,6 +294,43 @@ $("#btnSearch").click(function(){
         error: function(data){
             $("#pnl-search-alert").html("Error: An error occurred while executing the tool.");
             $("#pnl-search-alert").show();
+        }
+    })
+});
+
+
+$("#btnRoute").click(function () { 
+    removeLayerByName(mainMap, "route");
+    $("#pnl-route-alert").hide();
+    
+    $.ajax({
+        url: "./services/routing.py?source=" + 
+            $("#start").val() + 
+            "&target=" + 
+            $("#end").val() + 
+            "&srid=3857", 
+        type: "GET",
+        success: function(data){
+            if (data.path != null){
+                let vectorLayer = new ol.layer.Vector({
+                    name: "route",
+                    source: new ol.source.Vector({
+                        features: new ol.format.GeoJSON().readFeatures(data.path),
+                    }),
+                    style: new ol.style.Style({
+                        stroke: new ol.style.Stroke({
+                            color: '#ff0000',
+                            width: 4,
+                        }),
+                    })
+                });
+                mainMap.addLayer(vectorLayer);
+                
+            } 
+        },
+        error: function(data){
+            $("#pnl-route-alert").html("Error: An error occurred while executing the tool.");
+            $("#pnl-route-alert").show();
         }
     })
 });

@@ -47,7 +47,7 @@
                             <a class="nav-link" href="#">Closest market</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Shortest route</a>
+                            <a class="nav-link" href="#" onclick="showPanel('pnl-route')">Shortest route</a>
                         </li>    
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="clearResults()">Clear results</a>
@@ -56,6 +56,27 @@
                 </div>
             </div>
         </nav>
+        <!-- Shortest Distance by Road: Shortest Route Tool -->
+        <div id="pnl-route" class="card panel panel-tool">
+            <div class="card-header">
+                Shortest route
+                <span class="pull-right clickable close-icon" data-effect="fadeOut"><i class="fa fa-times"></i></span>
+            </div>
+            <div class="card-body">
+                <div id="pnl-route-alert" class="alert alert-danger">
+                    Error:
+                </div>
+                <form>
+                    <div class="form-group">
+                    <label for="start">Start</label>
+                    <input id="start" type="textbox" class="form-control" placeholder="Click here and then on the map">
+                    <label for="start">End</label>
+                    <input id="end" type="textbox" class="form-control" placeholder="Click here and then on the map">
+                    <input id="btnRoute" type="button" class="btn pull-right" value="Find route">
+                    </div>
+                </form>
+            </div>
+        </div>
         <!-- SEARCH: Search Markey Tool -->
         <div id="pnl-search" class="card panel panel-tool">
             <div class="card-header">

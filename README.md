@@ -1,7 +1,6 @@
 ### AIM
 Build a web application aimed at analysing, visualising and disseminating geo-information in other to tackle geospatial challenges.
 
-
 ### PROBLEM STATEMENT
 Address accessibility to food markets in Burundi by mapping catchment areas and roads for farmers to access different markets to sell their products.
 
@@ -12,6 +11,9 @@ Address accessibility to food markets in Burundi by mapping catchment areas and 
 * **Search Markets Tool:** Draw a circle to represent the searched markets that are located within the selected distance from a point in time.
     * slicer control feature to input distance 
     * visual representaion of the searching area
+
+* **Shortest route tool:** enables the user to find the shortest on-the-road route between two selected locations.
+    * 
 
 
 
